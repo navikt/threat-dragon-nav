@@ -1,0 +1,14 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    team: appsec
+  name: trusseldraken
+  namespace: appsec
+spec:
+  image: threatdragon/owasp-threat-dragon@sha256:b288e022e6febcf23110b60945c12654e0d98db698f629f722c7a69a5c645f91
+  port: 8080
+  ingresses:
+    - https://trusseldraken.intern.nav.no
+  envFrom:
+    - secret: threat-dragon
