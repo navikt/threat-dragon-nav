@@ -1,6 +1,8 @@
 name: Deploy image
 on:
-  push: [ master ]
+  push:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   deploy:
