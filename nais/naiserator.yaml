@@ -6,7 +6,7 @@ metadata:
   name: trusseldraken
   namespace: appsec
 spec:
-  image: threatdragon/owasp-threat-dragon@sha256:b288e022e6febcf23110b60945c12654e0d98db698f629f722c7a69a5c645f91
+  image: ${{ image }}
   port: 8080
   ingresses:
     - https://trusseldraken.intern.nav.no

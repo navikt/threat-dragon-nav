@@ -12,7 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4
+      - uses: nais/docker-build-push@3e3dd59e778ead7ba199dbfcde40350a178a2226 # ratchet:nais/docker-build-push@v0
+        id: docker-push
+        with:
+          team: appsec
+          push_image: true
+          pull: true
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }} # required, but is defined as an organization variable
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }} # required, but is defined as an organization secret
       - uses: nais/deploy/actions/deploy@96e757fcdfbced4bb66b28b0cd6133006e71e47d # ratchet:nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-gcp
           RESOURCE: nais/naiserator.yaml
+          IMAGE: ${{ steps.docker-push.outputs.image }}
