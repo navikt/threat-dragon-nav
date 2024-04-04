@@ -12,3 +12,6 @@ spec:
     - https://trusseldraken.intern.nav.no
   envFrom:
     - secret: threat-dragon
+  replicas:
+    min: 1
+    max: 1
